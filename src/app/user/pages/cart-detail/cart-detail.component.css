@@ -1,90 +1,177 @@
-/* Cart Container Styling */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
 .cart-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+}
+
+.inventory {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+  height: 100%;
+  border: 1px solid #eaeaea;
+}
+
+.inventory:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.inventory > div {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.inventory .item-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background-color: #f0f5ff;
+}
+
+.inventory p {
+  margin: 0;
+  padding: 0.35rem 0;
+}
+
+.inventory p:first-child {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.inventory p:nth-child(2) {
+  font-size: 1.1rem;
+  color: #3498db;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.inventory .description {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.inventory button {
+  margin-top: auto;
+  padding: 0.9rem 1.2rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.inventory button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.inventory button:active {
+  transform: translateY(0);
+}
+
+.inventory .badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #e74c3c;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+app-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(52, 152, 219, 0.2);
+  border-top-color: #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  
-  /* Inventory Item Card */
-  .inventory {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  grid-column: 1 / -1;
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 992px) {
+  .cart-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   }
-  
-  .inventory:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 768px) {
+  .cart-container {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    padding: 0 1.5rem;
   }
   
   .inventory > div {
     padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-container {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
   }
   
-  /* Item Information */
-  .inventory p {
-    margin: 0;
-    padding: 0.25rem 0;
+  .inventory .item-image {
+    height: 160px;
   }
-  
-  .inventory p:first-child {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 0.5rem;
-  }
-  
-  .inventory p:nth-child(2) {
-    font-size: 1rem;
-    color: #3498db;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  
-  /* Add to Cart Button */
-  .inventory button {
-    margin-top: auto;
-    padding: 0.75rem 1rem;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .inventory button:hover {
-    background-color: #2980b9;
-  }
-  
-  /* Loading Spinner */
-  app-loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    width: 100%;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .cart-container {
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .cart-container {
-      grid-template-columns: 1fr;
-    }
-  }
+}

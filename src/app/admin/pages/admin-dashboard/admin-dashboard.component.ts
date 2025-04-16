@@ -19,6 +19,8 @@ export class AdminDashboardComponent implements OnInit {
     type: '',
   };
 
+  users: any[] = []; 
+
   constructor(
     private adminservice: AdminService,
     private orderservice: OrderService,
@@ -26,6 +28,7 @@ export class AdminDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.resetForm()
     this.fetchUser();
   }
 
@@ -34,7 +37,9 @@ export class AdminDashboardComponent implements OnInit {
     this.userdetailservice.getUserDetails().subscribe({
       next: (user: any) => {
         if (user) {
-          this.userInput = user; 
+         
+          this.userInput = { ...user }; 
+          this.users = [user]; 
           this.isLoading = false;
         } else {
           alert('No user data found!');
@@ -59,12 +64,26 @@ export class AdminDashboardComponent implements OnInit {
       next: () => {
         alert('User updated successfully');
         this.isLoading = false;
-        this.fetchUser(); 
+        
+        this.users = [this.userInput]; 
+        this.resetForm(); 
       },
       error: (error) => {
         alert(`Error occurred: ${error}`);
         this.isLoading = false;
       },
     });
+  }
+
+
+  resetForm() {
+    this.userInput = {
+      name: '',
+      address: '',
+      phone: '',
+      pincode: '',
+      id: '',
+      type: '',
+    };
   }
 }
