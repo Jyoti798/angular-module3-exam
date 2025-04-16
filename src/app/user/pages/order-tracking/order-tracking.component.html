@@ -1,0 +1,22 @@
+
+
+<div><app-loading *ngIf="isLoading"></app-loading></div>
+<div class="order-container" *ngIf="!isLoading"> 
+    <table>
+        <thead>
+            <td>Item Name</td>
+            <td>Item Total Price</td>
+            <td>Item Quantity</td>
+            <td>Order Status</td>
+
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders">
+                <td>{{order.prodName}}</td>
+                <td>{{order.price}}</td>
+                <td>{{order.amount}}</td>
+                <td>{{order.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

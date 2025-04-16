@@ -1,4 +1,5 @@
-<div class="order-wrapper">
+<div><app-loading *ngIf="isLoading"></app-loading></div>
+<div class="order-wrapper" *ngIf="!isLoading">
   <h2 class="heading">Order Management Dashboard</h2>
 
   <div class="filter-bar">
@@ -39,40 +40,55 @@
         </div>
       </div>
 
-
-
-      <button class="toggle-details" (click)="order.showDetails=!order.showDetails">
-        {{order.showDetails?'HideDetails':'ViewDetails'}}
+      <button
+        class="toggle-details"
+        (click)="order.showDetails = !order.showDetails"
+      >
+        {{ order.showDetails ? "HideDetails" : "ViewDetails" }}
       </button>
 
-
       <div class="extra-info" *ngIf="order.showDetails">
-        <p><span class="label"> shipping Address:</span> {{order.address||'NA'}}</p>
-        <p><span class="label"> Contact:</span> {{order.phone||'NA'}}</p>
+        <p>
+          <span class="label"> shipping Address:</span>
+          {{ order.address || "NA" }}
+        </p>
+        <p><span class="label"> Contact:</span> {{ order.phone || "NA" }}</p>
         <!-- <p><span class="label"> ETA:</span> {{order.eta||'3-5 days'}}</p> -->
-
       </div>
 
       <div class="order-control">
-        <label for="status"m class="drop-down"> Update status:</label>
-        <select name="" [id]="'status-'+order.id"
-        [(ngModel)]="order.status"
-        required class="dropdown">
-        <option value="" disabled> select</option>
-<option value="Processing">Processing</option>
-<option value="placed">Placed</option>
-<option value="On the way">On The Way</option>
-<option value="Delivered">Delivered</option>
-
-    </select>
-    <textarea name="" id="" 
-    [(ngModel)]="order.notes"
-    placeholder="add delivery notes"  class="notes-input">
-</textarea>
-<div class="btn-group">
-    <button class="btn btn-primary" (click)="changeOrderStatus(order.id,order)">update order</button>
-    <button class="btn btn-danger" (click)="removeOrder(order.id)">Delete</button>
-</div>
+        <label for="status" m class="drop-down"> Update status:</label>
+        <select
+          name=""
+          [id]="'status-' + order.id"
+          [(ngModel)]="order.status"
+          required
+          class="dropdown"
+        >
+          <option value="" disabled>select</option>
+          <option value="Processing">Processing</option>
+          <option value="placed">Placed</option>
+          <option value="On the way">On The Way</option>
+          <option value="Delivered">Delivered</option>
+        </select>
+        <textarea
+          name=""
+          id=""
+          [(ngModel)]="order.notes"
+          placeholder="add delivery notes"
+          class="notes-input"
+        ></textarea>
+        <div class="btn-group">
+          <button
+            class="btn btn-primary"
+            (click)="changeOrderStatus(order.id, order)"
+          >
+            update order
+          </button>
+          <button class="btn btn-danger" (click)="removeOrder(order.id)">
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   </div>

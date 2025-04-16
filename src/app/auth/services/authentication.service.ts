@@ -47,17 +47,19 @@ export class AuthenticationService {
     const token=authResponse.idToken;
     return this.http.get<User>(`${BASE_URL}/${USER_ENDPOINT}/${userId}.json?auth=${token}`)
     .pipe(map((user)=>({
-      ...user,token,refreshToken:authResponse.refreshToken
+      ...user,
+      token,
+      refreshToken:authResponse.refreshToken
     })),
     tap((user:User)=>{
       this.manageService.setUserInLocal(user);
-      localStorage.setItem('token',token);
+    
     })
     );
   }
 
   logout(){
     this.manageService.logout();
-    localStorage.removeItem('token');
+
   }
 }

@@ -1,5 +1,5 @@
 
-<!-- <app-loading *ngIf="isLoading"></app-loading> -->
+<div><app-loading *ngIf="isLoading"></app-loading></div>
 <div class="form-container"  *ngIf="!isLoading">
     <form #formContainer="ngForm" (ngSubmit)="onSubmit()" class="register-form">
         <h1 class="app-title"> e-Commerce App</h1>
@@ -48,19 +48,19 @@
         </div>
 
         <div class="form-group">
-            <label for="userType" class="form-label">User Type</label>
-           <select name="userType"
-            id="userType"
+            <label for="type" class="form-label">User Type</label>
+           <select name="type"
+            id="type"
         required
         [(ngModel)]="userInput.type"
-        #userType="ngModel"
+        #type="ngModel"
         class="form-control select-input"
              >
             <option value="" selected disabled hidden> select user type</option>
             <option value="user">User</option>
             <option value="admin">Admin</option>
             </select>
-            <p class="error-msg" *ngIf="userType.touched&&userType.invalid">User Type is required</p>
+            <p class="error-msg" *ngIf="type.touched&&type.invalid">User Type is required</p>
         
         </div>
 

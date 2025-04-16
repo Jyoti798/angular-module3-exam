@@ -5,6 +5,7 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { sharedModule } from '../shared/shared.module';
 
 
 const authRoutes:Routes =[
@@ -31,7 +32,7 @@ RegistrationComponent
   CommonModule,
   RouterModule.forChild(authRoutes),
   FormsModule,
-  
+  sharedModule
   ],
  
 })

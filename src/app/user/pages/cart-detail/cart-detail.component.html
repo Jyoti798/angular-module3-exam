@@ -1,0 +1,13 @@
+<div><app-loading *ngIf="isLoading"></app-loading></div>
+<div class="cart-container" *ngIf="!isLoading">
+    <div class="inventory" *ngFor="let item of inventories">
+        <div *ngIf="item.quantity>0">
+            <p>NAME: {{item.name}}</p>
+<p>PRICE: {{item.price}}</p>
+<button (click)="addItemToCart(item.id,item)">
+    Add Item TO CART
+</button>
+        </div>
+
+    </div>
+</div>

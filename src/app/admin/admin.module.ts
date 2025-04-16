@@ -8,6 +8,7 @@ import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard
 import { InventoryPageComponent } from './pages/inventory-page/inventory-page.component';
 import { ProductOrderComponent } from './pages/product-order/product-order.component';
 import { AdminNavbarComponent } from './pages/admin-navbar/admin-navbar.component';
+import { sharedModule } from '../shared/shared.module';
 
 
 const adminRoutes:Routes =[
@@ -41,7 +42,7 @@ AdminNavbarComponent
   CommonModule,
   RouterModule.forChild(adminRoutes),
   FormsModule,
-  
+  sharedModule
   ],
  
 })

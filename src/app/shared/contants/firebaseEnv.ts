@@ -10,4 +10,7 @@ export const USER_ENDPOINT='users';
 
 export const INVENTORY_URL=`${BASE_URL}/inventory`;
 export const ORDER_URL=`${BASE_URL}/orders`;
-export const USER_URL=`${BASE_URL}/user`;
+export const USER_URL=`${BASE_URL}/users`;
+export const CART_URL=`${BASE_URL}/cart`;
+export const userurl=`${BASE_URL}/USERS`;
+
