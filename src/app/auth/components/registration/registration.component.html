@@ -10,12 +10,14 @@
 
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input type="email"
-          name="email"fire
+            <input
+             type="email"
+          name="email"
             placeholder="Enter Your Email"
             [(ngModel)]="userInput.email"
             #email="ngModel"
             required
+            email
             class="form-control">
             <p class="error-msg" *ngIf="email.touched&&email.invalid">Email is required</p>
         
@@ -37,8 +39,9 @@
 
         <div class="form-group">
             <label for="type" class="form-label">User Type</label>
-           <select name="type"
-            id="type"
+           <select
+            name="type"
+          
         required
         [(ngModel)]="userInput.type"
         #type="ngModel"

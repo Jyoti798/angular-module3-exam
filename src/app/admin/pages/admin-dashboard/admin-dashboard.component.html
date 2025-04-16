@@ -1,83 +1,86 @@
-<div><app-loading *ngIf="isLoading"></app-loading></div>
-<div class="admin-wrapper" *ngIf="!isLoading">
-  <form #formContainer="ngForm" (ngSubmit)="onSubmit()" class="admin-form">
-    <h2 class="form-title">Complete Your Profile</h2>
-
-    <!-- name -->
-    <div class="form-group">
-      <label for="name">Full Name:</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        required
-        [(ngModel)]="userInput.name"
-        #name="ngModel"
-        class="form-control"
-        placeholder="Enter Your name"
-      />
-      <p class="error-msg" *ngIf="name.touched && name.invalid">
-        Please Enter Valid Name
-      </p>
-    </div>
-
-    <!-- adresss -->
-    <div class="form-group">
-      <label for="address" class="form-label">Address</label>
-      <input
-        type="address"
-        name="address"
-        placeholder="Enter Your Address"
-        [(ngModel)]="userInput.address"
-        #address="ngModel"
-        required
-        placeholder="Enter Your Address"
-        class="form-control"
-      />
-      <p class="error-msg" *ngIf="address.touched && address.invalid">
-        Enter a valid Address
-      </p>
-    </div>
-
-    <!-- pincode..... -->
-    <div class="form-group">
-      <label for="pincode" class="form-label">Pincode</label>
-      <input
-        type="text"
-        name="pincode"
-        placeholder="Enter Your Pincode"
-        [(ngModel)]="userInput.pincode"
-        #pincode="ngModel"
-        required
-        minlength="6"
-        placeholder="Enter min 6-digit pincode"
-        class="form-control"
-      />
-      <p class="error-msg" *ngIf="pincode.touched && pincode.invalid">
-        Enter a valid Pincode
-      </p>
-    </div>
-    <!-- phone no  -->
-    <div class="form-group">
-      <label for="phone" class="form-label">Phone No:</label>
-      <input
-        type="text"
-        name="phone"
-        placeholder="Enter Your phone no."
-        [(ngModel)]="userInput.phone"
-        #phone="ngModel"
-        required
-        minlength="10"
-        maxlength="10"
-        placeholder="Enter min 6-digit phone"
-        class="form-control"
-      />
-      <p class="error-msg" *ngIf="phone.touched && phone.invalid">
-        Enter a valid phone no.
-      </p>
-    </div>
-    <button type="submit" [disabled]="formContainer.invalid">
-      Save Profile
-    </button>
-  </form>
-</div>
+<div *ngIf="isLoading">
+    <app-loading></app-loading>
+  </div>
+  
+  <div *ngIf="!isLoading && userInput" class="admin-wrapper">
+    <form #formContainer="ngForm" (ngSubmit)="onSubmit()" class="admin-form">
+      <h2 class="form-title">Complete Your Profile</h2>
+  
+      <!-- Name -->
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          [(ngModel)]="userInput.name"
+          #name="ngModel"
+          class="form-control"
+          placeholder="Enter Your Name"
+        />
+        <p class="error-msg" *ngIf="name.touched && name.invalid">
+          Please Enter Valid Name
+        </p>
+      </div>
+  
+      <!-- Address -->
+      <div class="form-group">
+        <label for="address" class="form-label">Address:</label>
+        <input
+          type="text"
+          name="address"
+          required
+          [(ngModel)]="userInput.address"
+          #address="ngModel"
+          class="form-control"
+          placeholder="Enter Your Address"
+        />
+        <p class="error-msg" *ngIf="address.touched && address.invalid">
+          Enter a valid Address
+        </p>
+      </div>
+  
+      <!-- Pincode -->
+      <div class="form-group">
+        <label for="pincode" class="form-label">Pincode:</label>
+        <input
+          type="text"
+          name="pincode"
+          required
+          minlength="6"
+          [(ngModel)]="userInput.pincode"
+          #pincode="ngModel"
+          class="form-control"
+          placeholder="Enter Your Pincode"
+        />
+        <p class="error-msg" *ngIf="pincode.touched && pincode.invalid">
+          Enter a valid Pincode
+        </p>
+      </div>
+  
+      <!-- Phone -->
+      <div class="form-group">
+        <label for="phone" class="form-label">Phone No:</label>
+        <input
+          type="text"
+          name="phone"
+          required
+          minlength="10"
+          maxlength="10"
+          [(ngModel)]="userInput.phone"
+          #phone="ngModel"
+          class="form-control"
+          placeholder="Enter Your Phone No."
+        />
+        <p class="error-msg" *ngIf="phone.touched && phone.invalid">
+          Enter a valid Phone No.
+        </p>
+      </div>
+  
+      <button type="submit" [disabled]="formContainer.invalid">
+        Save Profile
+      </button>
+    </form>
+  </div>
+  

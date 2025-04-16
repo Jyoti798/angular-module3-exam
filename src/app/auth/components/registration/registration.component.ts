@@ -13,7 +13,6 @@ isLoading:boolean=false;
 
   userInput={
     email: '',
-    name: '',
     password:'',
     type:'',
   }

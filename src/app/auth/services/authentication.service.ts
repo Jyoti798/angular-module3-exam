@@ -11,6 +11,8 @@ import { User } from 'src/app/models/user/user';
 export class AuthenticationService {
 
   constructor(private http:HttpClient,private manageService:ManageService) { }
+
+
   registerUser(user:{email:string;password:string;type:string}){
     return this.http.post<AuthResponse>(SIGN_UP_URL,{
       ...user,
@@ -23,7 +25,8 @@ export class AuthenticationService {
     const userId=authResponse.localId;
     const token=authResponse.idToken;
     return this.http.put<User>(`${BASE_URL}/${USER_ENDPOINT}/${userId}.json?auth=${token}`,
-      {id:userId,
+      {
+        id:userId,
         name:'',
         email:authResponse.email,
        type:type,
@@ -56,7 +59,7 @@ export class AuthenticationService {
           refreshToken: authResponse.refreshToken
         })),
         tap((user: User) => {
-          this.manageService.setUserInLocal(user);
+          this.manageService.setUserInLocalStorage(user);
         })
       );
   }

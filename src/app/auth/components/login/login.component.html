@@ -11,11 +11,13 @@
 
         <div class="form-group">
             <label for="email" class="form-label">Email</label>
-            <input type="email"
+            <input 
+            type="email"
           name="email"
             placeholder="Enter Your Email"
             [(ngModel)]="userInput.email"
             #email="ngModel"
+            email
             required
             class="form-control">
             <p class="error-msg" *ngIf="email.touched&&email.invalid">Email is required</p>

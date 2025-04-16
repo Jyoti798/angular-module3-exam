@@ -9,55 +9,62 @@ import { UserDetailService } from 'src/app/shared/services/admin-services/user-d
   styleUrls: ['./admin-dashboard.component.css']
 })
 export class AdminDashboardComponent implements OnInit {
-  isLoading=false;
-  userInput={
-    name: '',
-    email:'',
-    address:'',
-    phone:'',
-    pincode:'',
-    id:'',
-    type:'',
+  isLoading = false;
+  userInput = {
+    name: '',        
+    address: '',
+    phone: '',
+    pincode: '',
+    id: '',
+    type: '',
   };
 
-  constructor(private adminservice:AdminService,
-    private orderservice:OrderService,
-    private userdetailservice:UserDetailService
-  ){}
+  constructor(
+    private adminservice: AdminService,
+    private orderservice: OrderService,
+    private userdetailservice: UserDetailService
+  ) {}
 
-ngOnInit(): void {
-  this.fetchUser();
-
-}
-fetchUser(){
-this.isLoading=true;
-this.userdetailservice.getUserDetails().subscribe({
-  next:(user:any)=>{
-    this.userInput=user;
-    this.isLoading=false;
-  },
-  error:(error)=>{
-alert(`error while fetching the user${error}`);
-this.isLoading=false;
-  },
-});
-}
-onSubmit(){
-  if(!this.userInput){
-    alert('The user details are not correct fill it properly');
-    return;
+  ngOnInit(): void {
+    this.fetchUser();
   }
-  this.isLoading=true;
-  this.userdetailservice.updateUser(this.userInput.id,this.userInput).subscribe({
-    next:()=>{
-      alert('User are updated succefully');
-      this.isLoading=false;
-      this.fetchUser();
-    },
-    error:(error)=>{
-      alert(`Error occur ${error}`);
-      this.isLoading=false;
-    },
-  });
-}
+
+  fetchUser() {
+    this.isLoading = true;
+    this.userdetailservice.getUserDetails().subscribe({
+      next: (user: any) => {
+        if (user) {
+          this.userInput = user; 
+          this.isLoading = false;
+        } else {
+          alert('No user data found!');
+          this.isLoading = false;
+        }
+      },
+      error: (error) => {
+        alert(`Error while fetching user: ${error}`);
+        this.isLoading = false;
+      },
+    });
+  }
+
+  onSubmit() {
+    if (!this.userInput.name || !this.userInput.address || !this.userInput.pincode || !this.userInput.phone) {
+      alert('Please fill all the details correctly');
+      return;
+    }
+
+    this.isLoading = true;
+    this.userdetailservice.updateUser(this.userInput.id, this.userInput).subscribe({
+      next: () => {
+        alert('User updated successfully');
+        this.isLoading = false;
+        this.fetchUser(); 
+      },
+      error: (error) => {
+        alert(`Error occurred: ${error}`);
+        this.isLoading = false;
+      },
+    });
+  }
 }
