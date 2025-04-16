@@ -22,11 +22,11 @@ export class AuthenticationService {
   storeUserData(authResponse:AuthResponse,type:string){
     const userId=authResponse.localId;
     const token=authResponse.idToken;
-    return this.http.post(`${BASE_URL}/${USER_ENDPOINT}/${userId}.json?auth=${token}`,
+    return this.http.put<User>(`${BASE_URL}/${USER_ENDPOINT}/${userId}.json?auth=${token}`,
       {id:userId,
         name:'',
         email:authResponse.email,
-        type:type,
+       type:type,
         address:'',
         pincode:'',
         phone:'',
@@ -40,23 +40,27 @@ export class AuthenticationService {
       returnSecureToken:true,
     })
     .pipe(switchMap((response)=>this.fetchUserData(response)));
+ 
   }
 
-  fetchUserData(authResponse:AuthResponse){
-    const userId=authResponse.localId;
-    const token=authResponse.idToken;
+  fetchUserData(authResponse: AuthResponse) {
+    const userId = authResponse.localId;
+    const token = authResponse.idToken;
+  
     return this.http.get<User>(`${BASE_URL}/${USER_ENDPOINT}/${userId}.json?auth=${token}`)
-    .pipe(map((user)=>({
-      ...user,
-      token,
-      refreshToken:authResponse.refreshToken
-    })),
-    tap((user:User)=>{
-      this.manageService.setUserInLocal(user);
-    
-    })
-    );
+      .pipe(
+        tap(user => console.log('Fetched user from DB:', user)), 
+        map(user => ({
+          ...user,
+          token,
+          refreshToken: authResponse.refreshToken
+        })),
+        tap((user: User) => {
+          this.manageService.setUserInLocal(user);
+        })
+      );
   }
+  
 
   logout(){
     this.manageService.logout();

@@ -1,1 +1,25 @@
-<p>cart works!</p>
+<div><app-loading *ngIf="isLoading"></app-loading></div>
+<div class="cart-container" *ngIf="!isLoading">
+  <div class="cart-item" *ngFor="let item of cartItems">
+    <div class="cart-info">
+      <p class="item-name">Name: {{ item.name }}</p>
+      <p class="item-price">Price: {{ item.price }}</p>
+    </div>
+    <div class="cart-controls">
+      <span
+        class="action-btn increment-btn"
+        (click)="increaseItemCount(item.id, item)"
+        >+</span
+      >
+      <p class="item-amount">Amount: {{ item.amount }}</p>
+      <span
+        class="action-btn decrement-btn"
+        (click)="decreaseItemCount(item.id, item)"
+        >-</span
+      >
+      <button class="remove-btn" (click)="removeItem(item.id)">Remove</button>
+    </div>
+  </div>
+  <p class="cart-total">Cart Total: {{ totalPrice }}</p>
+  <button class="book-order-btn" (click)="bookOrder()">Book Order</button>
+</div>

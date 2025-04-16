@@ -25,22 +25,23 @@ export class LoginComponent {
   }
   onSubmit(){
     this.isLoading=true;
-    this.errorMessage=null;
+    this.errorMessage = null;
+
     this.authService.loginUser(this.userInput).subscribe({
-      next:(user:User)=>{
-        this.isLoading=false;
-const type=user.type.toLowerCase().trim();
-if(!user.name){
-this.router.navigate([`../../,${type}`,`dashboard`]);
-}
-else{
-this.router.navigate(['../../',type],{relativeTo:this.route});
-}
-      
+      next: (user: User) => {
+        this.isLoading = false;
+        if (!user || !user.type) {
+          this.errorMessage = 'User type missing. Please contact support.';
+          return;
+        }
+        const type = user.type.toLowerCase();
+  
+    
+        this.router.navigate([`/${type}/dashboard`]);
       },
-      error:(error)=>{
-this.isLoading=false;
-this.errorMessage=error.error?.message||'Login failed Try again please';
+      error: (error) => {
+        this.isLoading = false;
+        this.errorMessage = error.error?.message || 'Login failed. Try again, please.';
       }
     });
   }

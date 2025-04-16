@@ -1,4 +1,12 @@
-.loader {
+.loader-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Or any height based on your layout */
+    width: 100%;
+  }
+  
+  .loader {
     width: 48px;
     height: 48px;
     border: 3px dotted #FFF;
@@ -9,6 +17,7 @@
     box-sizing: border-box;
     animation: rotation 2s linear infinite;
   }
+  
   .loader::after {
     content: '';  
     box-sizing: border-box;
@@ -26,7 +35,7 @@
     animation: rotationBack 1s linear infinite;
     transform-origin: center center;
   }
-      
+  
   @keyframes rotation {
     0% {
       transform: rotate(0deg);
@@ -34,7 +43,8 @@
     100% {
       transform: rotate(360deg);
     }
-  } 
+  }
+  
   @keyframes rotationBack {
     0% {
       transform: rotate(0deg);
@@ -42,4 +52,5 @@
     100% {
       transform: rotate(-360deg);
     }
-  } 
+  }
+  

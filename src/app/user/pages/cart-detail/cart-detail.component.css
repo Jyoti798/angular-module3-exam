@@ -1,0 +1,90 @@
+/* Cart Container Styling */
+.cart-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  /* Inventory Item Card */
+  .inventory {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .inventory:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  .inventory > div {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  /* Item Information */
+  .inventory p {
+    margin: 0;
+    padding: 0.25rem 0;
+  }
+  
+  .inventory p:first-child {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .inventory p:nth-child(2) {
+    font-size: 1rem;
+    color: #3498db;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  /* Add to Cart Button */
+  .inventory button {
+    margin-top: auto;
+    padding: 0.75rem 1rem;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .inventory button:hover {
+    background-color: #2980b9;
+  }
+  
+  /* Loading Spinner */
+  app-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .cart-container {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cart-container {
+      grid-template-columns: 1fr;
+    }
+  }

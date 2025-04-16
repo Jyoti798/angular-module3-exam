@@ -1,0 +1,113 @@
+
+.order-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+  }
+  
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  }
+  
+
+  thead {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+  }
+  
+  thead td {
+    padding: 1.2rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  
+  tbody tr {
+    border-bottom: 1px solid #edf2f7;
+    transition: background-color 0.3s ease;
+  }
+  
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+  
+  tbody tr:hover {
+    background-color: #f8fafc;
+  }
+  
+  tbody td {
+    padding: 1rem 1.5rem;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #edf2f7;
+  }
+  
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody td:last-child {
+    font-weight: 600;
+  }
+  
+  tbody tr td:last-child:contains('Delivered') {
+    color: #2ecc71;
+  }
+  
+  tbody tr td:last-child:contains('Processing') {
+    color: #f39c12;
+  }
+  
+  tbody tr td:last-child:contains('Shipped') {
+    color: #3498db;
+  }
+  
+  tbody tr td:last-child:contains('Cancelled') {
+    color: #e74c3c;
+  }
+  
+ 
+  app-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+  }
+  
+
+  @media (max-width: 768px) {
+    table {
+      border-radius: 8px;
+    }
+    
+    thead td, tbody td {
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .order-container {
+      padding: 0 1rem;
+    }
+    
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+    
+    thead td, tbody td {
+      padding: 0.8rem 0.9rem;
+      font-size: 0.85rem;
+    }
+  }
