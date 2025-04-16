@@ -30,7 +30,7 @@ export class LoginComponent {
       next:(user:User)=>{
         this.isLoading=false;
 
-      
+      if(user&&user.type){
        const type=user.type.toLowerCase().trim();
        if(!user.name){
         this.router.navigate([`../../${type}`,`dashboard`],{
@@ -40,7 +40,10 @@ export class LoginComponent {
        else{
         this.router.navigate([`../../`,type],{relativeTo:this.route});
        }
-     
+      }else {
+        console.log(user);
+        this.errorMessage='user type is missing in response';
+      }
       
       },
       error:(error)=>{
