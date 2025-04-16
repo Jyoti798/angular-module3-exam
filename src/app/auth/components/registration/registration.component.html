@@ -1,0 +1,71 @@
+
+<!-- <app-loading *ngIf="isLoading"></app-loading> -->
+<div class="form-container"  *ngIf="!isLoading">
+    <form #formContainer="ngForm" (ngSubmit)="onSubmit()" class="register-form">
+        <h1 class="app-title"> e-Commerce App</h1>
+        <h3 class="form-subtitle">Register</h3>
+        <div *ngIf="errorMessage">
+        <p> {{errorMessage}} </p>
+        </div>
+<!-- name -->
+        <div class="form-group">
+            <label for="name" class="form-label">Name</label>
+            <input type="text"
+            name="name"
+            placeholder="Enter Your Name"
+            [(ngModel)]="userInput.name"
+            #name="ngModel"
+            required
+            class="form-control">
+            <p class="error-msg" *ngIf="name.touched&&name.invalid">Name is required</p>
+        </div>
+        <!-- email -->
+        <div class="form-group">
+            <label for="email" class="form-label">Email</label>
+            <input type="email"
+          name="email"
+            placeholder="Enter Your Email"
+            [(ngModel)]="userInput.email"
+            #email="ngModel"
+            required
+            class="form-control">
+            <p class="error-msg" *ngIf="email.touched&&email.invalid">Email is required</p>
+        
+        </div>
+<!-- //pasword -->
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input type="password"
+           name="password"
+            placeholder="Enter Your password"
+            [(ngModel)]="userInput.password"
+            #password="ngModel"
+            required
+            minlength="6"
+            class="form-control">
+            <p class="error-msg" *ngIf="password.touched&&password.invalid">Password is required</p>
+        
+        </div>
+
+        <div class="form-group">
+            <label for="userType" class="form-label">User Type</label>
+           <select name="userType"
+            id="userType"
+        required
+        [(ngModel)]="userInput.type"
+        #userType="ngModel"
+        class="form-control select-input"
+             >
+            <option value="" selected disabled hidden> select user type</option>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+            </select>
+            <p class="error-msg" *ngIf="userType.touched&&userType.invalid">User Type is required</p>
+        
+        </div>
+
+        <button type="submit" [disabled]="formContainer.invalid" class="btn">Register Now</button>
+        <p class="sigup-link">Already Have an account?</p>
+        <span (click)="onGoToLogin()" class="signup-text" style="cursor: pointer;">Login </span>
+    </form>
+</div>
