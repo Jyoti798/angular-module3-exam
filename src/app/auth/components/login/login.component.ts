@@ -29,10 +29,13 @@ export class LoginComponent {
     this.authService.loginUser(this.userInput).subscribe({
       next:(user:User)=>{
         this.isLoading=false;
-
-  const userRole=user.type?.toLowerCase()||'user';
-  console.log(userRole);
-  this.router.navigate([`/${userRole}`]);
+const type=user.type.toLowerCase().trim();
+if(!user.name){
+this.router.navigate([`../../,${type}`,`dashboard`]);
+}
+else{
+this.router.navigate(['../../',type],{relativeTo:this.route});
+}
       
       },
       error:(error)=>{

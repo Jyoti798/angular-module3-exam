@@ -11,7 +11,7 @@ import { UserDetailService } from 'src/app/shared/services/admin-services/user-d
 export class AdminDashboardComponent implements OnInit {
   isLoading=false;
   userInput={
-    name:'',
+    name: '',
     email:'',
     address:'',
     phone:'',
@@ -57,7 +57,7 @@ onSubmit(){
     error:(error)=>{
       alert(`Error occur ${error}`);
       this.isLoading=false;
-    }
-  })
+    },
+  });
 }
 }
