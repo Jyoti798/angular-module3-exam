@@ -11,20 +11,20 @@ import { User } from 'src/app/models/user/user';
 export class AuthenticationService {
 
   constructor(private http:HttpClient,private manageService:ManageService) { }
-  registerUser(user:{name:string;email:string;password:string;type:string}){
+  registerUser(user:{email:string;password:string;type:string}){
     return this.http.post<AuthResponse>(SIGN_UP_URL,{
       ...user,
      returnSecureToken:true,
 
     })
-    .pipe(switchMap((response)=>this.storeUserData(response,user.name,user.type)));
+    .pipe(switchMap((response)=>this.storeUserData(response,user.type)));
   }
-  storeUserData(authResponse:AuthResponse,name:string,type:string){
+  storeUserData(authResponse:AuthResponse,type:string){
     const userId=authResponse.localId;
     const token=authResponse.idToken;
     return this.http.post(`${BASE_URL}/${USER_ENDPOINT}/${userId}.json?auth=${token}`,
       {id:userId,
-        name:name,
+        name:'',
         email:authResponse.email,
         type:type,
         address:'',
