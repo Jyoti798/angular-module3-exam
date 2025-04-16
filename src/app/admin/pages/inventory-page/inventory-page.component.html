@@ -1,1 +1,105 @@
-<p>inventory-page works!</p>
+
+
+<!-- <app-loading *ngIf="isLoading"></app-loading> -->
+<div class="inventory-container" *ngIf="!isLoading">
+  <!-- header -->
+
+  <div class="inventory-header">
+    <h1>Inventory Management</h1>
+    <p>Manage and Track your Products effectively</p>
+  </div>
+
+  <!-- addproduct to carts -->
+  <div class="card product-form-card">
+    <h2 class="title">Add a Product</h2>
+    <form
+      #formContainer="ngForm"
+      (ngSubmit)="addProduct()"
+      class="product-form"
+    >
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="name">Product Name </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            [(ngModel)]="newProduct.name"
+            #name="ngModel"
+            placeholder="e.g Apple"
+          />
+          <span class="error-msg" *ngIf="name.touched && name.invalid"
+            >Please Enter a valid Name</span
+          >
+        </div>
+
+        <div class="input-group">
+            <label for="quantity">Product Quantity</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="1"
+              required
+              [(ngModel)]="newProduct.quantity"
+              #quantity="ngModel"
+              placeholder="e.g 10"
+            />
+            <span class="error-msg" *ngIf="quantity.touched && quantity.invalid"
+              >Please Enter a valid quantity</span
+            >
+          </div>
+
+          
+        <div class="input-group">
+            <label for="price">Product price</label>
+            <input
+              type="number"
+              id="price"
+              name="price"
+              min="1"
+              required
+              [(ngModel)]="newProduct.price"
+              #price="ngModel"
+              placeholder="e.g 199"
+            />
+            <span class="error-msg" *ngIf="price.touched && price.invalid"
+              >Please Enter a valid price</span
+            >
+          </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- product inventory table -->
+
+  <div class="card inventory-table">
+    <h2 class="card-title"> Inventory List</h2>
+    <div class="table-Wrapper">
+        <table class="inventory-table">
+            <thead>
+                <tr>
+                    <th>Product Name </th>
+
+                    <th>Product Quantity</th>
+                    <th>Product Price</th> 
+                    <th>Manage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let inventory of inventories">
+                    <td>{{inventory.name}}</td>
+                    <td>{{inventory.quantity}}</td>
+                    <td>{{inventory.price}}</td>
+                    <td class="btn-group"><button (click)="increaseProdCnt(inventory.id,inventory)">Increase Prod</button>
+                  <button (click)="decreaseProdCnt(inventory.id,inventory)">Decrease Prod</button>
+                    <button class="delete-btn" (click)="deleteProduct(inventory.id)">Delete Prod</button>
+                </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>

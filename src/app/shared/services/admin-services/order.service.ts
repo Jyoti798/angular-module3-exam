@@ -28,6 +28,8 @@ fetchOrder():Observable<any[]>{
 updateOrder(id:string,order:any){
 return this.http.put(`${ORDER_URL}/${id}.json`,order);
 }
-
+deleteOrder(id:string){
+  return this.http.delete(`${ORDER_URL}/${id}.json`);
+}
 
 }

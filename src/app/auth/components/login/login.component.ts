@@ -29,11 +29,18 @@ export class LoginComponent {
     this.authService.loginUser(this.userInput).subscribe({
       next:(user:User)=>{
         this.isLoading=false;
-        if(user.token){
-          localStorage.setItem('token',user.token);
-        }
-       const type=user.type?.toLowerCase()||'user';
-       this.router.navigate([`/${type}`]);
+
+      
+       const type=user.type.toLowerCase().trim();
+       if(!user.name){
+        this.router.navigate([`../../${type}`,`dashboard`],{
+          relativeTo:this.route,
+        });
+       }
+       else{
+        this.router.navigate([`../../`,type],{relativeTo:this.route});
+       }
+     
       
       },
       error:(error)=>{

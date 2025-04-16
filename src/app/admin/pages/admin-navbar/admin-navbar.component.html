@@ -1,1 +1,20 @@
-<p>admin-navbar works!</p>
+<div class="nav-bar">
+    <div class="nav-container">
+    <div routerLinkActive="active">
+        <a routerLink="/admin/inventory">Inventory page</a>
+
+    </div>
+    <div routerLinkActive="active">
+        <a routerLink="/admin/product-order">Product order</a>
+
+
+    </div>
+    <div routerLinkActive="active">
+        <a routerLink="/admin/dashboard">Admin Dasboard</a>
+        
+
+    </div>
+
+</div>
+<button class="btn" (click)="logout()">LOGOUT</button>
+</div>
