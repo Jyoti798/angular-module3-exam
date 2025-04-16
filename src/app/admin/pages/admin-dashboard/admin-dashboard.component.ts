@@ -31,6 +31,33 @@ ngOnInit(): void {
 }
 fetchUser(){
 this.isLoading=true;
-
+this.userdetailservice.getUserDetails().subscribe({
+  next:(user:any)=>{
+    this.userInput=user;
+    this.isLoading=false;
+  },
+  error:(error)=>{
+alert(`error while fetching the user${error}`);
+this.isLoading=false;
+  },
+});
+}
+onSubmit(){
+  if(!this.userInput){
+    alert('The user details are not correct fill it properly');
+    return;
+  }
+  this.isLoading=true;
+  this.userdetailservice.updateUser(this.userInput.id,this.userInput).subscribe({
+    next:()=>{
+      alert('User are updated succefully');
+      this.isLoading=false;
+      this.fetchUser();
+    },
+    error:(error)=>{
+      alert(`Error occur ${error}`);
+      this.isLoading=false;
+    }
+  })
 }
 }
